@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Minesweeper — PWA (Mobile + Desktop)</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0f1220">
+<link rel="icon" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<noscript>This game needs JavaScript enabled.</noscript>
+
+<div class="app" aria-label="Minesweeper App">
+  <header>
+    <div class="brand" aria-live="polite">
+      <div class="face" id="resetBtn" title="New Game (R)" role="button" aria-label="New Game">🙂</div>
+      <div class="title">Minesweeper</div>
+    </div>
+
+    <div class="hud">
+      <div class="stat" title="Mines remaining">
+        <span>💣</span><span class="val" id="minesLeft">000</span>
+      </div>
+      <div class="stat" title="Elapsed time">
+        <span>⏱️</span><span class="val" id="timer">000</span>
+      </div>
+
+      <select id="difficulty" aria-label="Difficulty">
+        <option value="beginner">Beginner 9×9 (10)</option>
+        <option value="intermediate">Intermediate 16×16 (40)</option>
+        <option value="expert">Expert 30×16 (99)</option>
+        <option value="custom">Custom…</option>
+      </select>
+
+      <span id="customFields" hidden>
+        <input id="w" type="number" min="4" max="60" value="9" style="width:80px" aria-label="Width (columns)" />
+        ×
+        <input id="h" type="number" min="4" max="40" value="9" style="width:80px" aria-label="Height (rows)" />
+        <span>💣</span>
+        <input id="m" type="number" min="1" max="999" value="10" style="width:90px" aria-label="Mines" />
+      </span>
+
+      <button class="primary" id="newGameBtn">New Game</button>
+      <button class="ghost" id="fitBtn" title="Fit cells to screen width">Fit</button>
+    </div>
+
+    <div class="bar">
+      <div class="tip">Desktop: Left-click reveal • Right-click flag • Double-click/chord on a number.</div>
+      <div class="tip">Mobile: Tap reveal • Long-press (0.35s) flag • Double-tap number to chord.</div>
+      <div class="tip">Keys: Arrows move • Space/Enter reveal • F flag • C chord • R reset.</div>
+    </div>
+  </header>
+
+  <div class="board-wrap">
+    <div id="board" class="board" role="grid" aria-label="Minesweeper Board"></div>
+  </div>
+
+  <div class="footer">
+    <div class="best" id="bestTimes">🏆 Best: —</div>
+    <div class="toggles">
+      <label class="switch"><input id="safeFirst" type="checkbox" checked /> Safe first click</label>
+      <label class="switch"><input id="soundToggle" type="checkbox" /> Click sounds</label>
+      <label class="switch"><input id="showZeros" type="checkbox" checked /> Auto-expand zeros</label>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
